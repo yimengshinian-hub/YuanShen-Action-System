@@ -71,7 +71,7 @@ namespace YuanshenMoveSystem
         {
            
         }
-        public virtual void OnTriggerEnter(Collider collider)
+        public virtual void OnTriggerEnter(Collider collider)//用来检测“是否踩到地面”，从而切换跳跃/坠落/落地状态
         {
             if (stateMachine.Player.LayerData.IsGroundLayer(collider.gameObject.layer))
             {

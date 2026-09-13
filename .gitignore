@@ -1,0 +1,25 @@
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+
+# Visual Studio / IDE
+.vs/
+.idea/
+.vscode/
+*.csproj
+*.sln
+*.user
+*.userprefs
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Codely CLI
+.codely-cli/
+.codelyignore

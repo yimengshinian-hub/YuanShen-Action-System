@@ -45,6 +45,13 @@ namespace YuanshenMoveSystem
             StopAnimation(stateMachine.Player.AnimationData.DashParameterHash);
             SetBaseRotationData();
         }
+        public override void Update()
+        {
+            if (Time.time >= startTime + dashData.DashDuration)
+            {
+                OnAnimationTransitionEvent();
+            }
+        }
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
