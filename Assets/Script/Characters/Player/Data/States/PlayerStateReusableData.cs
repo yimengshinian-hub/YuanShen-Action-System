@@ -15,6 +15,7 @@ namespace YuanshenMoveSystem
         public List<PlayerCameraRecenteringData> BackwardsCameraRecenteringData { get; set; }//后向数据
         public bool ShouldWalk {  get; set; }//是否应该步行
         public bool ShouldSprint { get; set; }//是否应该疾跑
+        public float CoyoteTimer { get; set; }//土狼时间计时器
         //以下是Mathf.SmoothDampAngle需要用到的变量,该方法用于实现平滑转动
         private Vector3 currentTargetRotation;//目标角度
         private Vector3 timeToReachTargetRotation;//到达目标角度需要的时间

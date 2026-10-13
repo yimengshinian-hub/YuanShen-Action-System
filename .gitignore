@@ -23,3 +23,5 @@ Thumbs.db
 # Codely CLI
 .codely-cli/
 .codelyignore
+# Codely local packages (75MB)
+.codely.packages/

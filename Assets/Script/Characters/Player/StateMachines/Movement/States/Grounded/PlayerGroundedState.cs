@@ -18,6 +18,7 @@ namespace YuanshenMoveSystem
         public override void Enter()
         {
             base.Enter();
+            stateMachine.ReusableData.CoyoteTimer = 0;//落地后清零
             StartAnimation(stateMachine.Player.AnimationData.GroundedParameterHash);
             UpdateShouldSprintState();
             UpdateCameraRecenteringState(stateMachine.ReusableData.MovementInput);
@@ -138,6 +139,7 @@ namespace YuanshenMoveSystem
             Ray downwardsFormCapsuleBottom = new Ray(capsuleColliderCenterInWorldSpace - stateMachine.Player.ColliderUtility.CapsuleColliderData.ColliderVerticalExtends,Vector3.down);//获得一个从胶囊体底部向下的射线
             if(!Physics.Raycast(downwardsFormCapsuleBottom,out _, movementData.GroundToFallRayDistance,stateMachine.Player.LayerData.GroundLayer,QueryTriggerInteraction.Ignore))
             {
+                stateMachine.ReusableData.CoyoteTimer = PlayerPhysicsConstants.CoyoteTime;
                 OnFall();//离开地面后转换为坠落状态(看离地距离,距离太低不算坠落状态)
             }
             

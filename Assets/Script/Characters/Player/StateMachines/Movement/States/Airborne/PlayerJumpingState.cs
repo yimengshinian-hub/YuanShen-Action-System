@@ -19,6 +19,7 @@ namespace YuanshenMoveSystem
         public override void Enter()
         {
             base.Enter();
+            stateMachine.ReusableData.CoyoteTimer = 0;//土狼时间跳跃后应该归零
             //stateMachine.ReusableData.MovementOnSlopesSpeedModifier = 0f;//使跳跃过程中不能移动(注释了之后就能朝着前进方向跳越了，不然只能原地蹦)
             stateMachine.ReusableData.RotationData = jumpData.RotationData;
             stateMachine.ReusableData.MovementDecelerationForce = jumpData.DecelerationForce;

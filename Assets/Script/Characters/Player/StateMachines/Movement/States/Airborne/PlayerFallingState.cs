@@ -38,7 +38,7 @@ namespace YuanshenMoveSystem
         protected override void ResetSprintState()
         {
         }
-        protected override void OnContactWithGround(Collider collider)
+        protected override void OnContactWithGround(Collider collider)//落地计算下落的高度，切换落地状态
         {
             float fallDistance = playerPositionOnEnter.y - stateMachine.Player.transform.position.y;//坠落的高度
             if(fallDistance < fallData.MinimumDistanceToBeConsideredHardFall)

@@ -51,6 +51,7 @@ namespace YuanshenMoveSystem
         private void Update()
         {
             movementStateMachine.HandleInput();//读取玩家输入
+            UpdateTimers();//更新土狼计时器
             movementStateMachine.Update();//更新状态机的非物理逻辑（比如动画、计时器）
         }
         private void FixedUpdate()//以固定的时间间隔调用，默认 0.02 秒一次
@@ -69,5 +70,19 @@ namespace YuanshenMoveSystem
         {
             movementStateMachine.OnAnimationTransitionEvent();
         }
+        #region Timer Methons
+        private void UpdateTimers()
+        {
+            var data = movementStateMachine.ReusableData;
+            if (data.CoyoteTimer > 0)
+            {
+                data.CoyoteTimer -= Time.deltaTime;
+            }                
+            if (data.CoyoteTimer > 0)
+            {
+                Debug.Log($"Coyote: {data.CoyoteTimer:F3}");
+            } 
+        }
+        #endregion
     }
 }

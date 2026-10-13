@@ -240,7 +240,9 @@ namespace YuanshenMoveSystem
             stateMachine.Player.Input.PlayerActions.Look.started += OnMouseMovementStarted;//鼠标移动时的回调
             stateMachine.Player.Input.PlayerActions.Movement.performed += OnMovementPerformed;//移动时发生的回调
             stateMachine.Player.Input.PlayerActions.Movement.canceled += OnMovementCanceled;//当移动取消时的回调
-
+            //started	输入开始（按下按键、开始移动鼠标）
+            //performed 输入达到触发条件（按键按下、摇杆推到位）
+            //canceled 输入结束（松开按键、摇杆回中）
         }
 
         protected virtual void RemoveInputActionsCallbacks()//删除回调
