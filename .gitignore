@@ -25,3 +25,7 @@ Thumbs.db
 .codelyignore
 # Codely local packages (75MB)
 .codely.packages/
+
+# Codely generated IDE files
+Cn.Tuanjie.Codely.Editor.csproj
+Codely.Common.csproj
