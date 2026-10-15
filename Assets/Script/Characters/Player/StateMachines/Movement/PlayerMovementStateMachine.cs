@@ -40,5 +40,25 @@ namespace YuanshenMoveSystem
             HardLandingState = new PlayerHardLandingState(this);
             RollingState = new PlayerRollingState(this);
         }
+        public void ForceReset()//死亡后的状态重置
+        {
+            //当前状态 Exit（注销回调、关动画）
+            currentState?.Exit();
+
+            //黑板清理
+            ReusableData.MovementInput = Vector2.zero;
+            ReusableData.ShouldSprint = false;
+            ReusableData.ShouldWalk = false;
+            ReusableData.CoyoteTimer = 0;
+
+            //清 Rigidbody 速度
+            Player.Rigidbody.velocity = Vector3.zero;
+
+            //玩家输入重新启用（防 HardLanding 的 Disable 残留）
+            Player.Input.PlayerActions.Enable();
+
+            //进 Idling（走正常 Enter 流程）
+            ChangeState(IdlingState);
+        }
     }
 }
