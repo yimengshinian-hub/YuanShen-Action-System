@@ -8,6 +8,7 @@ namespace YuanshenMoveSystem
     public class PlayerRollingState : PlayerLandingState
     {
         private PlayerRollData rollData;
+        private float startTime;
         public PlayerRollingState(PlayerMovementStateMachine playerMovementStateMachine) : base(playerMovementStateMachine)
         {
             rollData = movementData.RollData;
@@ -19,6 +20,8 @@ namespace YuanshenMoveSystem
             base.Enter();
             StartAnimation(stateMachine.Player.AnimationData.RollParameterHash);
             stateMachine.ReusableData.ShouldSprint = false;//一旦进入滚动状态就不应该再继续冲刺了
+            startTime = Time.time;
+            Roll();
         }
         public override void Exit()
         {
@@ -34,6 +37,15 @@ namespace YuanshenMoveSystem
             }
             RotateTowardsTargetRotation();
         }
+        public override void Update()
+        {
+            base.Update();
+
+            if (Time.time >= startTime + rollData.RollDuration)
+            {
+                OnAnimationTransitionEvent();  // 复用同一出口和冲刺一样
+            }
+        }
         public override void OnAnimationTransitionEvent()
         {
             if (stateMachine.ReusableData.MovementInput == Vector2.zero)
@@ -45,11 +57,25 @@ namespace YuanshenMoveSystem
         }
         #endregion
 
+        #region Main Methods
+        private void Roll()
+        {
+            if (stateMachine.ReusableData.MovementInput != Vector2.zero)
+            {
+                return;// 有输入方向，交给物理帧的 Move() 处理（相机相对方向）
+            }
+            Vector3 rollDirection = stateMachine.Player.transform.forward;
+            rollDirection.y = 0f;
+            stateMachine.Player.Rigidbody.velocity = rollDirection * GetMovementSpeed(false);
+        }
+        #endregion
+
         #region Input Methods
         protected override void OnJumpStarted(InputAction.CallbackContext context)
         {
             //将其留空，不希望能跳跃
         }
+
         #endregion
     }
 }

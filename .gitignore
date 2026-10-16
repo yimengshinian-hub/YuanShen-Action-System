@@ -29,3 +29,4 @@ Thumbs.db
 # Codely generated IDE files
 Cn.Tuanjie.Codely.Editor.csproj
 Codely.Common.csproj
+.codely/

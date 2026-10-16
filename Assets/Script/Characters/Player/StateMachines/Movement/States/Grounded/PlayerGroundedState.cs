@@ -105,14 +105,16 @@ namespace YuanshenMoveSystem
             base.AddInputActionsCallbacks();
             stateMachine.Player.Input.PlayerActions.Dash.started += OnDashStarted;
             stateMachine.Player.Input.PlayerActions.Jump.started += OnJumpStarted;
+            stateMachine.Player.Input.PlayerActions.Roll.started += OnRollStarted;
         }
 
-        
+
         protected override void RemoveInputActionsCallbacks()//ÒÆ³ý»Øµ÷
         {
             base.RemoveInputActionsCallbacks();
             stateMachine.Player.Input.PlayerActions.Dash.started -= OnDashStarted;
             stateMachine.Player.Input.PlayerActions.Jump.started -= OnJumpStarted;
+            stateMachine.Player.Input.PlayerActions.Roll.started -= OnRollStarted;
         }
         protected virtual void OnMove()
         {
@@ -162,6 +164,11 @@ namespace YuanshenMoveSystem
         {
             stateMachine.ChangeState(stateMachine.JumpingState);
         }
+        protected virtual void OnRollStarted(InputAction.CallbackContext context)
+        {
+            stateMachine.ChangeState(stateMachine.RollingState);
+        }
+
 
         #endregion
     }

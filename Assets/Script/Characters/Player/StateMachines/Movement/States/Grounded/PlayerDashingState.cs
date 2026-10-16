@@ -138,6 +138,10 @@ namespace YuanshenMoveSystem
         {
             shouldKeepRotating = true;
         }
+        protected override void OnRollStarted(InputAction.CallbackContext context)
+        {
+            // Áô¿Õ£¬³å´ÌÖÐ²»ÄÜ·­¹ö
+        }
         #endregion
     }
 }

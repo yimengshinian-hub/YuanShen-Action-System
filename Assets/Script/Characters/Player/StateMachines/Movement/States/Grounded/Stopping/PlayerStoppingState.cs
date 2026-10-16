@@ -18,7 +18,7 @@ namespace YuanshenMoveSystem
             stateMachine.ReusableData.MovementSpeedModifier = 0f;
             SetBaseCameraRecenteringData();
             base.Enter();
-           
+            StartAnimation(stateMachine.Player.AnimationData.StoppingParameterHash);
         }
         public override void PhysicsUpdate()
         {
@@ -37,7 +37,11 @@ namespace YuanshenMoveSystem
         {
             stateMachine.ChangeState(stateMachine.IdlingState);
         }
-
+        public override void Exit()
+        {
+            base.Exit();
+            StopAnimation(stateMachine.Player.AnimationData.StoppingParameterHash);
+        }
         #endregion
 
         #region Reusable Methods
@@ -60,7 +64,10 @@ namespace YuanshenMoveSystem
         {
             OnMove();
         }
-
+        protected override void OnRollStarted(InputAction.CallbackContext context)
+        {
+            // 留空，刹车中不能翻滚（封全家族：轻/中/重停止）
+        }
         #endregion
     }
 }

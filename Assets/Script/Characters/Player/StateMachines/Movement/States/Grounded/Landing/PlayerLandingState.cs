@@ -21,6 +21,10 @@ namespace YuanshenMoveSystem
             base.Exit();
             StopAnimation(stateMachine.Player.AnimationData.LandingParameterHash);
         }
+        protected override void OnRollStarted(InputAction.CallbackContext context)
+        {
+            // 留空，落地家族不能翻滚（轻落/重落/翻滚中都不能再触发）
+        }
         #endregion
     }
 }

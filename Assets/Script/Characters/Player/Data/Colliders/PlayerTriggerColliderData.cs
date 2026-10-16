@@ -12,6 +12,8 @@ namespace YuanshenMoveSystem
         public Vector3 GroundCheckColliderExtents { get; private set; }
         public void Initialize()
         {
+            if (GroundCheckCollider == null)
+                return;
             GroundCheckColliderExtents = GroundCheckCollider.bounds.extents;
         }
     }

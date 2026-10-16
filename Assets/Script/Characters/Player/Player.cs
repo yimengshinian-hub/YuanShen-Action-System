@@ -31,11 +31,18 @@ namespace YuanshenMoveSystem
             MainCameraTransform = Camera.main.transform;//获取主摄像机的位置信息
             MovementStateMachine = new PlayerMovementStateMachine(this);
         }
+#if UNITY_EDITOR
         private void OnValidate()//当脚本被加载、或在 Inspector 里修改了该脚本的任何值时调用。
         {
+            if (ColliderUtility == null) return;
+            if (ColliderUtility.CapsuleColliderData == null) return;
+            if (ColliderUtility.TriggerColliderData == null) return;
+            if (ColliderUtility.TriggerColliderData.GroundCheckCollider == null) return;
+
             ColliderUtility.Initialize(gameObject);
-            ColliderUtility.CalculateCapsuleColliderDimensions();//设置我们的碰撞器数据
+            ColliderUtility.CalculateCapsuleColliderDimensions();
         }
+#endif
         private void Start()
         {
             MovementStateMachine.ChangeState(MovementStateMachine.IdlingState);
